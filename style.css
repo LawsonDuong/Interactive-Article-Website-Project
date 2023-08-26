@@ -1,0 +1,10 @@
+h1 {
+    color: aqua;
+}
+
+figure {
+        position: relative;
+        width: 576px;
+        height: 365px;
+        margin-bottom: 50px; /* spacing between images */
+}
