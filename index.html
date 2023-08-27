@@ -7,7 +7,20 @@
 <script src="jquery-3.7.0.min.js"></script>
 <script>
 $(document).ready(function() { 
-    // Using jquery 
+    // Using jquery
+    $("figure").mouseenter(function() {
+        // Mouseover effect
+        $(this).find("figcaption").stop().animate({
+            bottom: "0px"   // Move caption to bottom of the image
+        }, 500);
+    });
+
+    $("figure").mouseleave(function() {
+        // Mouseout effect
+        $(this).find("figcaption").stop().animate({
+            bottom: "-24px"   // Move caption back below the image
+        }, 500);
+    });
 })
 </script>
 </head>

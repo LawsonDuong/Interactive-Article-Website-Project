@@ -5,7 +5,7 @@ h1 {
 }
 
 figure {
-        position: relative;
+        position:  relative;
         width: 576px;
         height: 365px;
         margin-bottom: 50px; /* spacing between images */
@@ -26,4 +26,16 @@ figure {
 
 .batman-badge img {
     width: 140px;
+}
+
+figcaption {
+   background-color: rgba(0, 0, 0, 0.5);  /* semi-transparent black */
+    color: white;
+    font-size: 24px;
+    height: 24px;      /* Set to the height of the text */
+    overflow: hidden;   /* Prevents text overflow */
+    width: 100%;        /* Full width of the image */
+    position: absolute; /* Absolute positioning to overlap on image */
+    bottom: -24px;      /* Start below the image */
+    text-align: left; /* Center the text */
 }
