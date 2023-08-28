@@ -1,27 +1,29 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Coding Test 1</title> <!-- making the title for the web tab -->
 <link href="style.css" rel="stylesheet" />
 <script src="jquery-3.7.0.min.js"></script>
 <script>
-$(document).ready(function() { 
-    // Using jquery
+$(document).ready(function() { // Using jquery
+    
+    // Animate the caption to slide up and become visible when mouse enters the figure.
     $("figure").mouseenter(function() {
-        // Mouseover effect
         $(this).find("figcaption").stop().animate({
-            bottom: "0px"   // Move caption to bottom of the image
-        }, 500);
+            bottom: "0px",   // Move caption from bottom of the image
+        }, 250);
     });
 
     $("figure").mouseleave(function() {
         // Mouseout effect
         $(this).find("figcaption").stop().animate({
-            bottom: "-24px"   // Move caption back below the image
-        }, 500);
+            bottom: "-35px",   // Move caption back into the image
+        }, 250);
     });
-})
+});
+
+
 </script>
 </head>
 <body> 

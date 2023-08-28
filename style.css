@@ -8,19 +8,22 @@ figure {
         position:  relative;
         width: 576px;
         height: 365px;
-        margin-bottom: 50px; /* spacing between images */
+        margin: 0 auto 50px; /* spacing between images */
+        overflow: hidden; 
 }
 
 .badge {
     bottom: 5px;
     right: 5px;
-    position: absolute;
+    position: absolute; 
+    z-index: 20; 
 }
 
 .badge img {
     width: 110px;
     height: 90px;
     margin-bottom: 2px;
+   
 
 }
 
@@ -32,10 +35,11 @@ figcaption {
    background-color: rgba(0, 0, 0, 0.5);  /* semi-transparent black */
     color: white;
     font-size: 24px;
-    height: 24px;      /* Set to the height of the text */
-    overflow: hidden;   /* Prevents text overflow */
+    height: 35px;      /* Set to the height of the text */
     width: 100%;        /* Full width of the image */
     position: absolute; /* Absolute positioning to overlap on image */
-    bottom: -24px;      /* Start below the image */
+    bottom: -35px;      /* Start below the image */
     text-align: left; /* Center the text */
+    z-index: 10; /* Higher than the image, lower than the badge */
+    overflow: hidden; /* hide the text */
 }
