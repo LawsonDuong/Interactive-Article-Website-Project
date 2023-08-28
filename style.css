@@ -4,6 +4,13 @@ h1 {
     background-color: black;
 }
 
+body {
+    background: linear-gradient(to bottom, black, #0077b6);
+    font-family: Comic Sans MS, sans-serif; /* Default font for the body */
+    margin: 10;
+    padding: 10;
+}
+
 figure {
         position:  relative;
         width: 576px;
@@ -32,7 +39,8 @@ figure {
 }
 
 figcaption {
-   background-color: rgba(0, 0, 0, 0.5);  /* semi-transparent black */
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: rgba(0, 0, 0, 0.5);  /* semi-transparent black */
     color: white;
     font-size: 24px;
     height: 35px;      /* Set to the height of the text */
