@@ -14,7 +14,7 @@ $(document).ready(function() { // Using jquery
             bottom: "0px",   // Move caption from bottom of the image
         }, 250);
     });
-
+    // slide the caption back down when the mouse leave 
     $("figure").mouseleave(function() {
         // Mouseout effect
         $(this).find("figcaption").stop().animate({
