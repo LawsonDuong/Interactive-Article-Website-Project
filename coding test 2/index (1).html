@@ -1,19 +1,21 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<title>Coding test 2</title>
 <link href="styles.css" rel="stylesheet" />
-<title>Example Site</title>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+
 $(document).ready(function() {
 
    $('nav a').click(function(e) {
-	e.preventDefault():
+	e.preventDefault();
 
 	let target = $( $(this).attr('href') ).position().top;
 $('html,body').stop().animate({ scrollTop: target }, { duration:
 500});
+});
 });
 
 </script>
