@@ -1,67 +1,227 @@
 @import url(https://fonts.googleapis.com/css?family=Special+Elite);
 @import url(https://fonts.googleapis.com/css?family=Inconsolata);
+/* General Body Background */
 body {
-	background-color: #ffffff;
-	color: #000000;
-	margin: 0;
-	font-family: Inconsolata;
+    background: radial-gradient(circle at center, #1b1b1b, #121212); /* Dark neutral tones for a sleek, VR-like feel */
+    color: #e0e0e0; /* Light gray text for contrast */
+    margin: 0;
+    padding: 0;
+    font-family: 'Inconsolata', sans-serif;
 }
-div#wrapper {
-	width: 800px;
-	height: auto;
-	margin-left: 200px;
+
+/* Section Styling */
+section {
+    background: rgba(18, 18, 18, 0.9); /* Dark transparent sections */
+    border-radius: 12px; /* Rounded corners for modern look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow for elevated feel */
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1000px;
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    color: #d4d4d4; /* Softer text color inside sections */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border to define sections */
 }
-header {
-	width: auto;
-	height: 100px;
-	padding-left: 200px;
-	position: relative;
+
+/* Subtle Animated Gradient (Optional) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #522d80, #101010);
+    opacity: 0.2; /* Softens the color */
+    z-index: -2; /* Pushes background behind content */
 }
-header h1 {
-	margin: 0;
-	font-size: 70px;
-	font-family: "Special Elite";
-	position: absolute;
-	bottom: 0;
+
+/* Background Accent Animation (Starry Effect) */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://cdn.pixabay.com/photo/2016/11/29/04/08/abstract-1867431_1280.png') repeat;
+    opacity: 0.05; /* Adds a subtle texture */
+    z-index: -1; /* Keeps it behind content */
+    animation: scroll-stars 60s linear infinite;
 }
-nav {
-	position: fixed;
-	background-color: #333;
-	color: #fff;
-	width: 150px;
-	height: auto;
-	left: 25px;
-	top: 125px;
+
+/* Star Scroll Animation */
+@keyframes scroll-stars {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
 }
-nav ul {
-	margin: 10px 0 10px 0;
-	padding: 0;
-	list-style-type: none;
+
+/* Title styling inspired by Snow Fall */
+.main-title {
+    font-family: 'Special Elite', cursive;
+    font-size: 4em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centering the title */
+    text-align: center;
 }
-nav ul li a, nav ul li a:link, nav ul li a:visited {
-	color: #fff;
-	text-decoration: none;
-	display: block;
-	padding: 10px 10px 10px 20px;
-} 
-nav ul li a:hover, nav ul li a:active {
-	background-color: #fff;
-	color: #222;
-} 
-section p {
-	text-align: justify;
-	font-size: 16px;
-	line-height: 24px;
+
+/* Container holding the title and background image */
+.title-container {
+    position: relative;
+    height: 500px; /* Adjust this to your preference */
+    background: linear-gradient(to bottom, rgb(88, 186, 211) 0%, rgba(3, 45, 65, 0.7) 60%, rgba(255, 255, 255, 0) 100%);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    transition: opacity 0.3s;
 }
-section h1 {
-	font-size: 34px;
-	margin-left: 10px;
-	margin-bottom: 0;
+
+.sub-title {
+    font-family: 'Inconsolata', sans-serif;
+    font-size: 1.5em;
+    position: absolute;
+    top: 65%; /* Adjusting position to be below main title */
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    text-align: center;
+    border-top: 1px solid white;
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 80%;
+    color: white;
 }
+.author {
+    font-family: 'Inconsolata', sans-serif;
+    font-size: 1.2em;
+    position: absolute;
+    top: 75%; /* Adjusting position to be below subtitle */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+
+/* Adjustments for subtitles or headers */
+h2 {
+    font-family: 'Special Elite', cursive;
+    font-size: 2em;
+    margin-top: 30px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+/* Link styling */
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 figure {
-	margin: 0;
+    position: relative;
+    width: 50%;
+    height: 50%;  /* Taking full width of its parent container */
+    margin: 20px 0;  /* Adding some margin around for spacing */
+    overflow: hidden;  /* Hide any content that exceeds the image dimensions */
 }
-figure figcaption {
-	font-size: 20px;
-	color: #666;
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;  /* Fix: changed from '500' to 'auto' to maintain aspect ratio */
+}
+
+
+/* Enhanced figcaption styling */
+figcaption {
+    font-family: 'Special Elite', cursive;  /* Using the 'Special Elite' font for a cooler look */
+    background-color: rgba(0, 0, 0, 0.7);  /* semi-transparent black for better readability */
+    color: white;  /* White text color */
+    font-size: 20px;  /* Adjusted font size for better fitting */
+    padding: 10px;  /* Padding for spacing inside the caption box */
+    position: absolute;  /* Absolute positioning to overlap on the image */
+    bottom: 0;  /* Align with the bottom of the image */
+    width: 100%;  /* Span the full width of the image */
+    text-align: center;  /* Center aligned text */
+    z-index: 10;  /* Making sure the caption stays on top of the image */
+    transition: transform 0.3s;  /* Smooth transition for the hover effect */
+    
+}
+
+
+/* Navigation Bar */
+nav {
+    background: linear-gradient(135deg, #1e90ff, #87cefa); /* Add gradient to match the VR theme */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+    position: sticky; /* Sticks to the top on scroll */
+    top: 0; /* Ensures it stays at the top */
+    z-index: 1000; /* Ensures it stays above other content */
+    padding: 0 20px; /* Add spacing on the sides */
+}
+
+nav ul {
+    display: flex; /* Horizontal layout */
+    justify-content: center; /* Center-align links */
+    align-items: center; /* Vertically align links */
+    list-style: none; /* Remove default bullet points */
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 15px; /* Space between menu items */
+}
+
+nav a {
+    font-family: 'Special Elite', cursive; /* Match the VR article style */
+    font-size: 1rem; /* Set appropriate size for links */
+    color: white; /* White text for better visibility */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Add padding for clickable area */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
+    transform: scale(1.1); /* Slight scaling on hover */
+}
+
+nav a.active {
+    background-color: rgba(255, 255, 255, 0.3); /* Highlight active link */
+    font-weight: bold; /* Bold for emphasis */
+}
+
+section {
+    padding: 20px;
+    margin: 20px 0;
+}
+
+/* Footer Styling */
+footer {
+    background: #121212; /* Dark footer to match background */
+    color: #e0e0e0; /* Light text */
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle top border */
+}
+
+footer a {
+    color: #1e90ff; /* Link color to match the theme */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make links stand out */
+    margin-left: 5px;
+}
+
+footer a:hover {
+    text-decoration: underline; /* Underline on hover for emphasis */
+}
+
+footer p {
+    margin: 0; /* Remove extra margin for a clean look */
 }

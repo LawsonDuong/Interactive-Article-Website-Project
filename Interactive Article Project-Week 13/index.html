@@ -2,68 +2,178 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>MMCC2041 Interactivce article project</title>
 <link href="styles.css" rel="stylesheet" />
-<title>Example Site</title>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="jquery-3.7.0.min.js"></script>
 <script>
-$(document).ready(function() {
+$(document).ready(function() { 
+ // Smooth Scrolling
+ $('nav a').click(function(event){
+        event.preventDefault();
+        var section = $(this).attr('href');
+        $('html, body').animate({
+            scrollTop: $(section).offset().top - 50 // adjust for navigation bar height
+        }, 1000);
+    });
 
+    // Highlight Active Link
+    $(window).scroll(function() {
+        var position = $(this).scrollTop();
+        $('section').each(function() {
+            var target = $(this).offset().top - 60; // adjust for navigation bar height
+            var id = $(this).attr('id');
+            if (position >= target) {
+                $('nav a').removeClass('active');
+                $('nav a[href="#' + id + '"]').addClass('active');
+            }
+        });
+    });
 
+    var startingOpacity = $(".title-container").css("opacity");
+	$(window).on('scroll', function() {
+    var st = $(this).scrollTop();
+    var opacity = 1 - st / 200;
 
+    if (opacity > 1) opacity = 1;
+    if (opacity < 0) opacity = 0;
+
+    $(".title-container").css({
+        "opacity": opacity
+    });
 });
+
+
+    // Collapsible Sections
+    $('section h2').click(function(){
+        $(this).siblings().toggle(500);
+    });
+
+ // Animate the caption to slide up and become visible when mouse enters the figure.
+ $("figure").mouseenter(function() {
+        $(this).find("figcaption").stop().animate({
+            bottom: "0px",   // Move caption from bottom of the image
+        }, 250);
+    });
+    // slide the caption back down when the mouse leave 
+    $("figure").mouseleave(function() {
+        // Mouseout effect
+        $(this).find("figcaption").stop().animate({
+            bottom: "-35px",   // Move caption back into the image
+        }, 250);
+    });
+})
 </script>
 </head>
 <body>
-	<header>
-		<h1>Website Example</h1>
-	</header>
-	<nav>
-			<ul>
-				<li><a href="#home">home</a></li>
-				<li><a href="#audio">audio</a></li>
-				<li><a href="#video">video</a></li>
-				<li><a href="#contact">contact</a></li>
-			</ul>
-		</nav>
-	<div id="wrapper">
-		
-		<section>
-			<h1 id="home">Home</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mattis mi a nulla eleifend vitae sagittis libero imperdiet. Vivamus consequat risus sit amet tortor laoreet vitae mattis enim ornare. Suspendisse rhoncus sagittis urna quis sodales. Quisque pharetra arcu eu ipsum iaculis ac auctor ante posuere. Integer urna dui, tristique eu consequat id, fermentum ac arcu. Integer cursus metus sit amet erat tempus eu pulvinar justo congue. Sed vitae mi id purus auctor pulvinar. Phasellus non mauris at ipsum bibendum rutrum vitae quis purus. Proin elit leo, varius ac lacinia eu, ultricies vitae ipsum. Curabitur lacinia vehicula scelerisque. Integer blandit, turpis a ullamcorper accumsan, sem tellus blandit turpis, in fermentum nunc nisl sit amet sapien. Curabitur non enim at est pulvinar tincidunt. Vivamus a erat non dolor tempor placerat. Duis euismod justo et sapien consequat ultrices. Donec lorem lacus, consequat vitae semper sed, tempor in massa. Sed nec lectus accumsan diam luctus faucibus. Duis eros mi, ullamcorper sed viverra a, varius nec lectus. Mauris dapibus purus sit amet nulla adipiscing tempus facilisis odio bibendum. Vivamus aliquet orci quis libero rutrum nec interdum augue feugiat.</p>
 
-			<p>Donec ante risus, iaculis sed faucibus a, interdum sit amet sem. Pellentesque eleifend, lorem a elementum dapibus, dui lectus lacinia est, et mollis neque quam sit amet justo. Nunc fermentum semper ligula bibendum faucibus. Vivamus volutpat convallis dui, quis porttitor ligula luctus ut. Nulla sapien turpis, molestie id rutrum congue, hendrerit eu libero. Donec vitae dui metus, at pellentesque elit. Morbi posuere molestie eros at accumsan. In vitae odio purus. Nunc egestas nisi sit amet enim semper pellentesque. Donec ornare pharetra enim, sed rhoncus lectus euismod quis. Donec laoreet, sapien at tincidunt sollicitudin, arcu neque mollis turpis, nec gravida massa turpis a felis. Integer nisi enim, blandit nec euismod vel, cursus at nulla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+<!-- Navigation bar -->
+<nav>
+    <ul>
+        <li><a href="#intro" class="active">Home</a></li>
+        <li><a href="#hardware">Hardware</a></li>
+        <li><a href="#software">Software</a></li>
+        <li><a href="#user-experience">User Experience</a></li>
+        <li><a href="#applications">Applications</a></li>
+        <li><a href="#challenges">Challenges</a></li>
+        <li><a href="#future">Future Developments</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+    </ul>
+</nav>
 
-			<figure>
-				<img src="https://mmcc.mq.edu.au/mmcc2041/resources/week6/scroll-example/images/batman.jpg" />
-				<figcaption>The Batman</figcaption>
-			</figure>
 
-			<h1 id="audio">Audio</h1>
-			<p>Phasellus ac lacus nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras mattis pharetra nunc sit amet pharetra. Ut ullamcorper pellentesque tincidunt. Sed odio sem, volutpat ut varius ut, ullamcorper at nibh. Suspendisse tincidunt elit magna. Donec vehicula mattis viverra. In hac habitasse platea dictumst. Donec lobortis vehicula tristique. Proin adipiscing, nunc non feugiat cursus, purus sem lobortis quam, pulvinar bibendum nisl nisi vel augue. Pellentesque non tellus dui. Nulla tempus tortor ac orci mollis vestibulum bibendum massa scelerisque. Cras cursus vulputate dignissim.</p>
-			<p>Proin sit amet mauris felis, sit amet condimentum justo. Ut tempus hendrerit massa, quis tempus risus dictum sit amet. Quisque ac augue dui. Morbi elit arcu, luctus ut interdum id, pulvinar et odio. Curabitur accumsan augue vitae dolor vestibulum eget faucibus dolor consequat. Maecenas dapibus orci eu diam ultricies vulputate. Phasellus condimentum facilisis auctor. Donec ac metus adipiscing erat rhoncus gravida. Fusce lectus sem, condimentum eget vestibulum sit amet, hendrerit et eros. Curabitur velit justo, dictum non vestibulum a, semper in nunc. Proin vitae arcu urna, sed varius purus. Suspendisse viverra est in magna accumsan ut dapibus enim lacinia. Pellentesque hendrerit dapibus feugiat.</p>
+<div class="title-container">
+    <h1 class="main-title">The Virtual Reality</h1>
+    <p class="sub-title">Embracing The Existence of Virtual Reality </p>
+    <p class="author">By Lawson Duong-47394773</p>
+</div>
 
-			<p>Aenean malesuada eleifend molestie. Nulla at augue quis magna iaculis volutpat ac ac tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam facilisis, velit non laoreet cursus, urna velit pharetra justo, nec egestas diam ligula vel massa. Suspendisse tempor tempus porta. Sed convallis nulla at mi mollis a faucibus dolor lobortis. Suspendisse at erat in dolor mattis rhoncus. Praesent quis nulla eleifend orci tincidunt condimentum. Etiam et pharetra ligula. Nulla blandit elementum justo in sagittis. Duis id est lorem. Ut aliquet pretium luctus. Nam varius, arcu quis gravida feugiat, odio magna dignissim arcu, non varius turpis magna sit amet magna. In mattis tristique lorem non malesuada.</p>
+<!-- Article Sections -->
+<section id="intro">
+    <h2>Introduction</h2>
+    <p>An overview of the evolution and significance of Virtual Reality as a transformative technology.The concept of VR has been around for centuries. In the early 19th century, Charles Wheatstone invented the stereoscope, which allowed users to view two images side-by-side to create a 3D effect. In the 1950s, Morton Heilig invented the Sensorama, which was an early VR device that provided users with visual, auditory, tactile, and olfactory feedback.
 
-			<h1 id="video">Video</h1>
+        The first commercial VR headsets were released in the 1990s, but they were very expensive and had low-resolution displays. In recent years, VR technology has improved significantly, and VR headsets have become more affordable and accessible. This technology immerses users in a computer-generated world, providing a sense of presence and interaction that was once thought impossible. The journey from its rudimentary beginnings to the sophisticated systems of today reflects a saga of innovation and determination. This article aims to dissect the components of VR, explore its diverse applications, and speculate on its promising future.</p>
+</section>
 
-			<p>Nunc libero metus, adipiscing sit amet faucibus a, tristique eu ipsum. Praesent fringilla euismod sapien in facilisis. Mauris et erat a justo malesuada pulvinar. Curabitur urna orci, ornare ac gravida ut, commodo in metus. Phasellus tristique quam sit amet dolor sodales laoreet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In molestie, dui sit amet posuere lobortis, lectus leo tempor felis, ac feugiat neque nisi vitae lorem. Phasellus eget augue ac arcu tincidunt mattis sit amet ac turpis. Pellentesque congue risus a ipsum dapibus sed interdum ligula tincidunt. Sed in lectus diam. Nunc vehicula pulvinar risus, nec semper arcu volutpat id. Aliquam scelerisque, felis in rhoncus accumsan, mauris dui condimentum justo, ut vestibulum nulla ante ut odio. Praesent in lacus ac risus tempor commodo sit amet nec purus. Maecenas in orci vitae neque scelerisque auctor et sed dui. Vivamus cursus justo ut urna fermentum interdum. Praesent sit amet mi neque. Maecenas eget lacus sapien, gravida rhoncus nisi.</p>
-			
-			<video id="vid1" controls>
-				<source src="https://media.w3.org/2010/05/sintel/trailer.mp4">
-				<source src="https://media.w3.org/2010/05/sintel/trailer.ogg">
-				<source src="https://media.w3.org/2010/05/sintel/trailer.webm">
-			</video>
+<section id="hardware">
+    <h2>Hardware</h2>
+    <figure>
+    <img src="https://about.fb.com/wp-content/uploads/2022/12/EOY-VR-Roundup_Header.gif" alt="VR Headset gif" width="500">
+    <a href="https://about.fb.com/wp-content/uploads/2022/12/EOY-VR-Roundup_Header.gif" alt="VR Headset gif">Source:https://about.fb.com/news/2022/12/metas-progress-in-augmented-and-virtual-reality/</a>
+    <figcaption>VR Headset</figcaption>
+</figure>
+    <!-- You can further split this section into sub-sections like HMD, Tracking Systems, etc. -->
+    <p>The backbone of any VR experience is its hardware.The head-mounted display (HMD) is the most integral component, wrapping around the user’s head to present a virtual world in full view. Contemporary HMDs boast high resolutions, providing crisp and clear images, and wide fields of view that encompass the user’s peripheral vision. The refresh rate is also a critical factor, with higher rates ensuring a smoother visual experience and reducing the risk of VR sickness.</p>
+    <p>Tracking systems are essential in translating the user’s physical movements into the virtual world. Outside-in tracking utilizes external cameras or sensors to monitor the user’s position and movements, while inside-out tracking incorporates these sensors directly into the HMD, eliminating the need for external hardware. Inside-out tracking is becoming more prevalent due to its convenience and ease of setup.</p>
+    <p>Input devices such as VR controllers allow users to interact with the virtual environment, providing buttons, triggers, and motion tracking. Haptic feedback devices add another layer of immersion, simulating touch and force to make virtual interactions feel more real. Emerging technologies are exploring voice and gesture controls, providing more natural and intuitive ways to interact with virtual worlds.</p>
+    <p>Powering a VR system requires a robust computer and GPU, as rendering immersive 3D environments demands significant computational resources. Users must ensure their systems meet the required specifications to enjoy a VR experience without performance issues.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ATVGl9wOJsM?si=9OvJf3NtvXtyd3yn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</section>
 
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mattis mi a nulla eleifend vitae sagittis libero imperdiet. Vivamus consequat risus sit amet tortor laoreet vitae mattis enim ornare. Suspendisse rhoncus sagittis urna quis sodales. Quisque pharetra arcu eu ipsum iaculis ac auctor ante posuere. Integer urna dui, tristique eu consequat id, fermentum ac arcu. Integer cursus metus sit amet erat tempus eu pulvinar justo congue. Sed vitae mi id purus auctor pulvinar. Phasellus non mauris at ipsum bibendum rutrum vitae quis purus. Proin elit leo, varius ac lacinia eu, ultricies vitae ipsum. Curabitur lacinia vehicula scelerisque. Integer blandit, turpis a ullamcorper accumsan, sem tellus blandit turpis, in fermentum nunc nisl sit amet sapien. Curabitur non enim at est pulvinar tincidunt. Vivamus a erat non dolor tempor placerat. Duis euismod justo et sapien consequat ultrices. Donec lorem lacus, consequat vitae semper sed, tempor in massa. Sed nec lectus accumsan diam luctus faucibus. Duis eros mi, ullamcorper sed viverra a, varius nec lectus. Mauris dapibus purus sit amet nulla adipiscing tempus facilisis odio bibendum. Vivamus aliquet orci quis libero rutrum nec interdum augue feugiat.</p>
+<section id="software">
+    <h2>Software</h2>
+    <!-- Similarly, split this into Operating Systems, Development Engines, etc. -->
+    <p>The software side of VR is just as crucial as the hardware. Operating systems and platforms vary, with PC-based systems like HTC Vive and Oculus Rift, console-based systems like PlayStation VR, and standalone systems like Oculus Quest. Each offers a unique set of advantages and caters to different user needs.</p>
+    <p>VR development engines such as Unreal Engine and Unity provide powerful tools for developers to create immersive virtual experiences. These engines support a wide range of VR hardware and are backed by large communities of developers and creators. 3D modeling and animation software like Blender and Maya, along with audio production tools, enable the creation of high-quality virtual content.</p>
+    <p> Distribution platforms such as SteamVR and the Oculus Store provide users with access to a plethora of VR games and applications, ranging from immersive games and educational experiences to virtual tours and productivity tools.</p>
+    <figure>
+    <img src="https://avangarde-software.com/wp-content/uploads/2019/12/Virtual-Reality-1.jpg" alt="VR software platforms" width="500">
+    <a href="https://avangarde-software.com/wp-content/uploads/2019/12/Virtual-Reality-1.jpg" alt="Software for VR">Source: https://avangarde-software.com/ar-vr-development/</a>
+    <figcaption>Existing Software of VR </figcaption>
+</figure>
+</section>
 
-			<h1 id="contact">Contact</h1>
+<section id="user-experience">
+    <h2>User Experience and Interaction</h2>
+    <p>Creating a convincing and comfortable VR experience is paramount. Immersion is achieved through a combination of visual, auditory, and haptic elements, each meticulously designed to create a cohesive and believable virtual world. Navigating and interacting within this world should feel intuitive, with controls and movement schemes that are easy to grasp and use.</p>
+    <p>Designing user interfaces for VR presents unique challenges, as designers must consider the 3D nature of the medium and ensure that text is readable, controls are accessible, and the overall design is inclusive. Addressing VR sickness is also crucial, as this phenomenon can detract from the user experience. Understanding its causes, such as mismatched visual and motion cues, allows designers to implement strategies to mitigate its effects.</p>
+    <figure>
+    <img src="https://i.pinimg.com/originals/3e/f0/2d/3ef02d4af077dcce50f81a83c4c77ec5.gif" alt="VR user interactions" width="500">
+    <figcaption>User Experience inside VR</figcaption>
+</figure>
+</section>
 
-			<p>Donec ante risus, iaculis sed faucibus a, interdum sit amet sem. Pellentesque eleifend, lorem a elementum dapibus, dui lectus lacinia est, et mollis neque quam sit amet justo. Nunc fermentum semper ligula bibendum faucibus. Vivamus volutpat convallis dui, quis porttitor ligula luctus ut. Nulla sapien turpis, molestie id rutrum congue, hendrerit eu libero. Donec vitae dui metus, at pellentesque elit. Morbi posuere molestie eros at accumsan. In vitae odio purus. Nunc egestas nisi sit amet enim semper pellentesque. Donec ornare pharetra enim, sed rhoncus lectus euismod quis. Donec laoreet, sapien at tincidunt sollicitudin, arcu neque mollis turpis, nec gravida massa turpis a felis. Integer nisi enim, blandit nec euismod vel, cursus at nulla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+<section id="applications">
+    <h2>Applications of Virtual Reality</h2>
+    <p>VR's potential applications are diverse and far-reaching. In gaming and entertainment, it provides immersive experiences that transcend traditional media, creating worlds that users can truly inhabit. Social VR platforms are also emerging, enabling users to connect and interact in virtual spaces, whether for gaming, socializing, or collaboration.</p>
+    <p>In education and training, VR offers realistic simulations that provide valuable learning experiences in a safe and controlled environment. Healthcare is leveraging VR for therapeutic interventions, rehabilitation, and training future medical professionals. Real estate and architecture professionals use VR for virtual tours and architectural visualization, providing clients with a tangible sense of space and design.</p>
+    <p>The industrial and manufacturing sectors are utilizing VR for virtual prototyping, allowing for the testing and refinement of designs before they are built. VR is also used for safety training, preparing workers for hazardous situations in a risk-free virtual environment.</p>
+    </section>
 
-			<p>Phasellus ac lacus nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras mattis pharetra nunc sit amet pharetra. Ut ullamcorper pellentesque tincidunt. Sed odio sem, volutpat ut varius ut, ullamcorper at nibh. Suspendisse tincidunt elit magna. Donec vehicula mattis viverra. In hac habitasse platea dictumst. Donec lobortis vehicula tristique. Proin adipiscing, nunc non feugiat cursus, purus sem lobortis quam, pulvinar bibendum nisl nisi vel augue. Pellentesque non tellus dui. Nulla tempus tortor ac orci mollis vestibulum bibendum massa scelerisque. Cras cursus vulputate dignissim.</p>
-			<p>Proin sit amet mauris felis, sit amet condimentum justo. Ut tempus hendrerit massa, quis tempus risus dictum sit amet. Quisque ac augue dui. Morbi elit arcu, luctus ut interdum id, pulvinar et odio. Curabitur accumsan augue vitae dolor vestibulum eget faucibus dolor consequat. Maecenas dapibus orci eu diam ultricies vulputate. Phasellus condimentum facilisis auctor. Donec ac metus adipiscing erat rhoncus gravida. Fusce lectus sem, condimentum eget vestibulum sit amet, hendrerit et eros. Curabitur velit justo, dictum non vestibulum a, semper in nunc. Proin vitae arcu urna, sed varius purus. Suspendisse viverra est in magna accumsan ut dapibus enim lacinia. Pellentesque hendrerit dapibus feugiat.</p>
-		</section>
+<section id="challenges">
+    <h2>Challenges and Limitations of VR</h2>
+    <p>Despite its potential, VR faces several challenges and limitations. Hardware constraints, particularly concerning the comfort and ergonomics of HMDs, are areas of ongoing development. The resolution and field of view of HMDs, while continually improving, still have room for enhancement to provide even more lifelike virtual experiences.</p>
+    <P>The software and content ecosystem is rapidly evolving, but there remains a need for more high-quality, diverse content to cater to a broader audience. Development challenges, such as creating intuitive user interfaces and ensuring accessibility, are crucial considerations for the continued growth of VR.</P>
+    <p>The psychological and physical effects of VR, including VR sickness, vision strain, and the impact on posture, are areas of active research and discussion within the VR community. Ensuring the long-term safety and comfort of VR users is a top priority.</p>
+</section>
 
-	</div>
+<section id="future">
+    <h2>Future Developments and Trends</h2>
+    <p>The future of VR is brimming with possibilities. Advancements in hardware are expected to yield lighter, more comfortable HMDs, along with improved tracking and input devices. Innovations in software and content creation will likely result in more user-friendly development tools and a broader range of VR content.</p>
+    <p>As VR becomes more widespread, its applications in education, training, and social interactions are poised to grow, opening new avenues for collaborative and immersive experiences. However, this growth necessitates ethical considerations and potential regulation, particularly concerning user privacy and content standards.Here are some of the most exciting potential applications of VR:</p>
+    <p>Virtual education: VR could be used to create immersive educational experiences that are more engaging and effective than traditional methods. For example, a VR lesson could allow students to explore a virtual museum or visit a historical site.</p>
+    <figure>
+    <img src="https://cdn.shortpixel.ai/spai/w_951+q_+ret_img+to_webp/https://vreddo.com.au/wp-content/uploads/2018/06/instructor-assisting-students-vr-glasses-2048x1365.jpg" alt="VR software platforms" width="500">
+    <a href="https://vreddo.com.au/vr-rundown-what-you-need-to-know-before-buying-a-vr-system-for-your-school/" alt="Software for VR">Source:https://vreddo.com.au/vr-rundown-what-you-need-to-know-before-buying-a-vr-system-for-your-school/</a>
+    <figcaption>VR For education</figcaption>
+    </figure>
+    <p>Virtual healthcare: VR could be used to provide patients with remote access to healthcare services. For example, a patient could see a doctor in VR or have a virtual surgery.</p>
+    <figure>
+    <img src="https://www.ixrlabs.com/blog/assets/admin/uploads/application-of-vr-in-experimental-research-and-design.jpg" alt="VR software platforms" width="500">
+    <a href="https://www.ixrlabs.com/blog/application-of-vr-in-experimental-research-and-design/" alt="Software for VR">Source:https://www.ixrlabs.com/blog/application-of-vr-in-experimental-research-and-design/</a>
+    <figcaption>VR For Healthcare</figcaption>
+</figure>
+</section>
+
+<section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>Virtual Reality represents a significant leap forward in how we interact with digital content and each other. Its applications span various fields, from gaming and entertainment to education, healthcare, and beyond. As we continue to explore and innovate within this virtual frontier, the potential of VR is boundless, limited only by our imagination and willingness to embrace this transformative technology.</p>
+</section>
+
+<footer>
+    <p>&copy; 2023 Virtual Reality Article - Lawson Duong | <a href="#intro">Back to Top</a></p>
+</footer>
+
 </body>
 </html>
